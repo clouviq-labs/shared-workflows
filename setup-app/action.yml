@@ -1,0 +1,15 @@
+name: Set up the app
+description: Install Python with a pip cache, then the app's requirements
+inputs:
+  python-version:
+    description: Python version to install
+    default: "3.13"
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v7
+      with:
+        python-version: ${{ inputs.python-version }}
+        cache: pip
+    - run: pip install -r requirements.txt
+      shell: bash
